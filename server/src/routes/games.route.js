@@ -4,8 +4,13 @@ import { insertDataIntoDatabase } from "../utils/insertData.js";
 const router = express.Router();
 
 router.get("/", async (req, res) => {
-  let games = await insertDataIntoDatabase();
-  res.send(games);
+  try {
+    let games = await insertDataIntoDatabase();
+
+    res.send(games);
+  } catch (error) {
+    throw error;
+  }
 });
 
 export default router;

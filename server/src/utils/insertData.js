@@ -8,12 +8,12 @@ import {
 const file = "./exeldata/jogos-ragnarok.xlsx";
 
 async function insertDataIntoDatabase() {
-  const workbook = XLSX.readFile(file);
-  const worksheet = workbook.Sheets["Planilha1"];
-  const games = XLSX.utils.sheet_to_json(worksheet);
+  const workbook = XLSX.readFile(file); // Carrega o arquivo Excel
+  const worksheet = workbook.Sheets["Planilha1"]; // Acessa a  planilha
+  const games = XLSX.utils.sheet_to_json(worksheet); // Converte os dados para json
 
   try {
-    await connectionDatabase();
+    await connectionDatabase(); // Conectando com o banco de dados
 
     const selectQuery =
       "SELECT COUNT(*) AS count FROM jogos WHERE nome = ? AND descricao = ?";
@@ -21,7 +21,7 @@ async function insertDataIntoDatabase() {
       "INSERT INTO jogos (nome, descricao, imagem, preco, plataformas, lojas) VALUES (?, ?, ?, ?, ?, ?)";
 
     for (const game of games) {
-      const { nome, descricao, imagem, preco, plataformas, lojas } = game;
+      const { nome, descricao, imagem, preco, plataformas, lojas } = game; // Desestrura objeto
 
       // Verifica se o jogo já existe no banco de dados
       const [existingGame] = await new Promise((resolve, reject) => {
