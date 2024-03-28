@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>
-        Smart Games {"\n"}
+        Smart Gamess {"\n"}
         <Text>Store</Text>
       </Text>
       <Text>Explore, Compre e Divirta-se!</Text>
